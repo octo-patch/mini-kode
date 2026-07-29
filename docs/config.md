@@ -19,6 +19,16 @@ export OPENAI_API_KEY="your-key"
 mini-kode config set llm.model gpt-4
 ```
 
+**MiniMax**
+
+```bash
+export MINIMAX_API_KEY="your-key"
+# Optional: target mainland China (defaults to the global endpoint)
+export MINIMAX_REGION="cn"
+# Optional: pick a model (defaults to MiniMax-M3, e.g. MiniMax-M2.7)
+export MINIMAX_MODEL="MiniMax-M2.7"
+```
+
 **Custom API**
 
 ```bash
@@ -73,6 +83,9 @@ Since configuration is global-only, settings are resolved in this order (highest
 
 - `DEEPSEEK_API_KEY` → Auto-configures DeepSeek settings
 - `OPENAI_API_KEY` → Auto-configures OpenAI settings
+- `MINIMAX_API_KEY` → Auto-configures MiniMax settings
+  - `MINIMAX_REGION` - `cn` for mainland China; defaults to the global endpoint
+  - `MINIMAX_MODEL` - MiniMax model to use; defaults to `MiniMax-M3` (e.g. `MiniMax-M2.7`)
 
 ### Manual Configuration
 

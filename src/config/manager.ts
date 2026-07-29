@@ -48,6 +48,16 @@ const API_PRESETS = {
     model: "glm-4.6",
     planModel: "glm-4.6",
   },
+  minimax: {
+    baseURL: "https://api.minimax.io/v1",
+    model: "MiniMax-M3",
+    planModel: "MiniMax-M3",
+  },
+  minimaxCn: {
+    baseURL: "https://api.minimaxi.com/v1",
+    model: "MiniMax-M3",
+    planModel: "MiniMax-M3",
+  },
 } as const;
 
 /**
@@ -67,7 +77,8 @@ const DEFAULT_CONFIG = {
  *
  * Priority:
  * 1. MINIKODE_* variables (explicit user configuration)
- * 2. Provider-specific auto-detection (DEEPSEEK_API_KEY, OPENAI_API_KEY)
+ * 2. Provider-specific auto-detection (DEEPSEEK_API_KEY, OPENAI_API_KEY,
+ *    GLM_API_KEY, MINIMAX_API_KEY)
  *
  * Returns a complete configuration object or null if no env config available.
  */
@@ -123,6 +134,22 @@ function loadFromEnvironment(): {
       model: API_PRESETS.glm.model,
       planModel: API_PRESETS.glm.planModel,
       apiKey: glmKey.trim(),
+    };
+  }
+
+  const minimaxKey = process.env.MINIMAX_API_KEY;
+  if (minimaxKey?.trim()) {
+    // Default to the global endpoint; set MINIMAX_REGION=cn for mainland China.
+    const region = process.env.MINIMAX_REGION?.trim().toLowerCase();
+    const preset =
+      region === "cn" ? API_PRESETS.minimaxCn : API_PRESETS.minimax;
+    // Default to MiniMax-M3; MINIMAX_MODEL selects another model (e.g. MiniMax-M2.7).
+    const model = process.env.MINIMAX_MODEL?.trim() || preset.model;
+    return {
+      baseURL: preset.baseURL,
+      model,
+      planModel: model,
+      apiKey: minimaxKey.trim(),
     };
   }
 
