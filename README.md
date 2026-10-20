@@ -43,8 +43,8 @@ export GLM_API_KEY="your-glm-api-key"
 export MINIMAX_API_KEY="your-minimax-api-key"
 # Optional: target mainland China (defaults to the global endpoint)
 export MINIMAX_REGION="cn"
-# Optional: pick a model (defaults to MiniMax-M3, e.g. MiniMax-M2.7)
-export MINIMAX_MODEL="MiniMax-M2.7"
+# Optional: pick MiniMax-M3 instead of the default MiniMax-M3.1-Flash
+export MINIMAX_MODEL="MiniMax-M3"
 ```
 
 **Or use OpenAI compatible API**:

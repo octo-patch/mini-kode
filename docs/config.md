@@ -25,8 +25,8 @@ mini-kode config set llm.model gpt-4
 export MINIMAX_API_KEY="your-key"
 # Optional: target mainland China (defaults to the global endpoint)
 export MINIMAX_REGION="cn"
-# Optional: pick a model (defaults to MiniMax-M3, e.g. MiniMax-M2.7)
-export MINIMAX_MODEL="MiniMax-M2.7"
+# Optional: pick MiniMax-M3 instead of the default MiniMax-M3.1-Flash
+export MINIMAX_MODEL="MiniMax-M3"
 ```
 
 **Custom API**
@@ -85,7 +85,9 @@ Since configuration is global-only, settings are resolved in this order (highest
 - `OPENAI_API_KEY` → Auto-configures OpenAI settings
 - `MINIMAX_API_KEY` → Auto-configures MiniMax settings
   - `MINIMAX_REGION` - `cn` for mainland China; defaults to the global endpoint
-  - `MINIMAX_MODEL` - MiniMax model to use; defaults to `MiniMax-M3` (e.g. `MiniMax-M2.7`)
+  - `MINIMAX_MODEL` - Explicit model override; defaults to `MiniMax-M3.1-Flash`, with `MiniMax-M3` as an alternative
+  - Saved `llm.model` and `llm.planModel` values are retained when `llm.baseURL` matches the selected MiniMax region and `MINIMAX_MODEL` is unset. Explicit legacy and custom model IDs remain supported.
+  - The China preset uses `https://api.minimax.cn/v1`; a saved `https://api.minimaxi.com/v1` endpoint is retained.
 
 ### Manual Configuration
 

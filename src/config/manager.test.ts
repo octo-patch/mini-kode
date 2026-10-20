@@ -84,8 +84,8 @@ describe("ConfigManager", () => {
       const config = ConfigManager.load();
 
       expect(config.llm.baseURL).toBe("https://api.minimax.io/v1");
-      expect(config.llm.model).toBe("MiniMax-M3");
-      expect(config.llm.planModel).toBe("MiniMax-M3");
+      expect(config.llm.model).toBe("MiniMax-M3.1-Flash");
+      expect(config.llm.planModel).toBe("MiniMax-M3.1-Flash");
       expect(config.llm.apiKey).toBe("minimax-key");
 
       expect(config.llm.baseURLSource).toBe("env");
@@ -100,8 +100,8 @@ describe("ConfigManager", () => {
 
       const config = ConfigManager.load();
 
-      expect(config.llm.baseURL).toBe("https://api.minimaxi.com/v1");
-      expect(config.llm.model).toBe("MiniMax-M3");
+      expect(config.llm.baseURL).toBe("https://api.minimax.cn/v1");
+      expect(config.llm.model).toBe("MiniMax-M3.1-Flash");
       expect(config.llm.apiKey).toBe("minimax-key");
     });
 
